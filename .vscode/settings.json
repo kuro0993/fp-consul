@@ -8,5 +8,7 @@
     "solargraph.diagnostics": true,
     "solargraph.formatting": true,
     "editor.tabSize": 2,
-    "ruby.intellisense": "rubyLocate"
+    "ruby.intellisense": "rubyLocate",
+    "plantuml.render": "PlantUMLServer",
+    "plantuml.server": "http://localhost:8080"
 }
