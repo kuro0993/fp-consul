@@ -1,0 +1,2 @@
+class BusinessTimeMaster < ApplicationRecord
+end

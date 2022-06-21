@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acceptable_frame: 2022-06-21 17:29:55
+  staff: one
+
+two:
+  acceptable_frame: 2022-06-21 17:29:55
+  staff: two
