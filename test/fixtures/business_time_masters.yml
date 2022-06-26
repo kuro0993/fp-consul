@@ -1,11 +1,43 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  week: MyString
-  start_time: 2022-06-21 16:57:30
-  end_time: 2022-06-21 16:57:30
+mon:
+  weekday_id: 1
+  weekday: Mon
+  start_time: <%= Time.zone.parse('10:00') %>
+  end_time: <%= Time.zone.parse('18:00') %>
 
-two:
-  week: MyString
-  start_time: 2022-06-21 16:57:30
-  end_time: 2022-06-21 16:57:30
+tue:
+  weekday_id: 2
+  weekday: Tue
+  start_time: <%= Time.zone.parse('10:00') %>
+  end_time: <%= Time.zone.parse('18:00') %>
+
+wed:
+  weekday_id: 3
+  weekday: Wed
+  start_time: <%= Time.zone.parse('10:00') %>
+  end_time: <%= Time.zone.parse('18:00') %>
+
+thu:
+  weekday_id: 4
+  weekday: Thu
+  start_time: <%= Time.zone.parse('10:00') %>
+  end_time: <%= Time.zone.parse('18:00') %>
+
+Fri:
+  weekday_id: 5
+  weekday: Fri
+  start_time: <%= Time.zone.parse('10:00') %>
+  end_time: <%= Time.zone.parse('18:00') %>
+
+sat:
+  weekday_id: 6
+  weekday: Sat
+  start_time: <%= Time.zone.parse('11:00') %>
+  end_time: <%= Time.zone.parse('15:00') %>
+
+sun:
+  weekday_id: 7
+  weekday: Sun
+  start_time: ''
+  end_time: ''

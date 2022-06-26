@@ -1,9 +1,83 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  acceptable_frame: 2022-06-21 17:29:55
-  staff: one
+# fp1
+fp1_0701_1000:
+  staff: fp1
+  acceptable_frame_start: 2022-07-01 10:00:00
+  acceptable_frame_end: 2022-07-01 10:30:00
 
-two:
-  acceptable_frame: 2022-06-21 17:29:55
-  staff: two
+fp1_0701_1030:
+  staff: fp1
+  acceptable_frame_start: 2022-07-01 10:30:00
+  acceptable_frame_end: 2022-07-01 11:00:00
+
+fp1_0701_1100:
+  staff: fp1
+  acceptable_frame_start: 2022-07-01 11:00:00
+  acceptable_frame_end: 2022-07-01 11:30:00
+
+fp1_0701_1130:
+  staff: fp1
+  acceptable_frame_start: 2022-07-01 11:30:00
+  acceptable_frame_end: 2022-07-01 12:00:00
+
+fp1_0702_1600:
+  staff: fp1
+  acceptable_frame_start: 2022-07-02 16:00:00
+  acceptable_frame_end: 2022-07-02 16:30:00
+
+fp1_0702_1630:
+  staff: fp1
+  acceptable_frame_start: 2022-07-02 16:30:00
+  acceptable_frame_end: 2022-07-02 16:00:00
+
+fp1_0702_1700:
+  staff: fp1
+  acceptable_frame_start: 2022-07-02 17:00:00
+  acceptable_frame_end: 2022-07-02 17:30:00
+
+fp1_0702_1730:
+  staff: fp1
+  acceptable_frame_start: 2022-07-02 17:30:00
+  acceptable_frame_end: 2022-07-02 17:00:00
+
+# fp2
+fp2_0701_1000:
+  staff: fp2
+  acceptable_frame_start: 2022-07-01 10:00:00
+  acceptable_frame_end: 2022-07-01 10:30:00
+
+fp2_0701_1030:
+  staff: fp2
+  acceptable_frame_start: 2022-07-01 10:30:00
+  acceptable_frame_end: 2022-07-01 11:00:00
+
+fp2_0701_1100:
+  staff: fp2
+  acceptable_frame_start: 2022-07-01 11:00:00
+  acceptable_frame_end: 2022-07-01 11:30:00
+
+fp2_0701_1130:
+  staff: fp2
+  acceptable_frame_start: 2022-07-01 11:30:00
+  acceptable_frame_end: 2022-07-01 12:00:00
+
+fp2_0702_1600:
+  staff: fp2
+  acceptable_frame_start: 2022-07-02 16:00:00
+  acceptable_frame_end: 2022-07-02 16:30:00
+
+fp2_0702_1630:
+  staff: fp2
+  acceptable_frame_start: 2022-07-02 16:30:00
+  acceptable_frame_end: 2022-07-02 16:00:00
+
+fp2_0702_1700:
+  staff: fp2
+  acceptable_frame_start: 2022-07-02 17:00:00
+  acceptable_frame_end: 2022-07-02 17:30:00
+
+fp2_0702_1730:
+  staff: fp2
+  acceptable_frame_start: 2022-07-02 17:30:00
+  acceptable_frame_end: 2022-07-02 17:00:00

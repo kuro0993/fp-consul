@@ -1,6 +1,7 @@
 FROM ruby:3.1.2-alpine3.16
 
 WORKDIR /app
+ENV TZ Asia/Tokyo
 
 RUN apk add --no-cache \
   alpine-sdk \

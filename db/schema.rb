@@ -12,7 +12,8 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_06_21_172955) do
   create_table "appoints", charset: "utf8mb4", force: :cascade do |t|
-    t.datetime "appoint_datetime"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
     t.string "consultation_content"
     t.bigint "customer_id", null: false
     t.bigint "staff_id", null: false
@@ -23,11 +24,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_172955) do
   end
 
   create_table "business_time_masters", charset: "utf8mb4", force: :cascade do |t|
-    t.string "week"
+    t.integer "weekday_id", limit: 1
+    t.string "weekday"
     t.time "start_time"
     t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["weekday_id"], name: "index_business_time_masters_on_weekday_id", unique: true
   end
 
   create_table "customers", charset: "utf8mb4", force: :cascade do |t|
@@ -42,7 +45,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_172955) do
   end
 
   create_table "staff_appoint_frames", charset: "utf8mb4", force: :cascade do |t|
-    t.datetime "acceptable_frame"
+    t.datetime "acceptable_frame_start"
+    t.datetime "acceptable_frame_end"
     t.bigint "staff_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

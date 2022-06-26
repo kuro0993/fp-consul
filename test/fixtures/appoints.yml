@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  appoint_datetime: 2022-06-21 17:28:23
-  consultation_content: MyString
-  customer: one
-  staff: one
+# ok_appoint:
+#   consultation_content: MyString
+#   customer: one
+#   staff: fp_one
+#   start_datetime: 2022-07-01 9:00:00
+#   end_datetime: 2022-07-01 9:30:00
 
-two:
-  appoint_datetime: 2022-06-21 17:28:23
-  consultation_content: MyString
-  customer: two
-  staff: two
+# ng_appoint:
+#   consultation_content: MyString
+#   customer: two
+#   staff: fp_one
+#   start_datetime: 2022-07-01 8:30:00
+#   end_datetime: 2022-07-01 9:00:00

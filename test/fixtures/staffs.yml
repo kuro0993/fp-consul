@@ -1,17 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  first_name_kana: MyString
-  last_name_kana: MyString
-  email: MyString
-  password: MyString
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-two:
-  first_name: MyString
-  last_name: MyString
-  first_name_kana: MyString
-  last_name_kana: MyString
-  email: MyString
-  password: MyString
+fp1:
+  id: 1
+  first_name: FP_Taro
+  last_name: FP_Tanaka
+  first_name_kana: fp_taro
+  last_name_kana: fp_tanaka
+  email: fp-taro-tanaka@example.com
+  password: abcdef
+
+fp2:
+  id: 2
+  first_name: FP_Jiro
+  last_name: FP_Suzuki
+  first_name_kana: fp_jiro
+  last_name_kana: fp_suzuki
+  email: fp-jiro-suzuki@example.com
+  password: abcdef
