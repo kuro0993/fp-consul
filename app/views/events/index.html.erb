@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Events</h1>
+
+
+<%= month_calendar(events: @events) do |date, events| %>
+  <%= date %>
+
+  <% events.each do |event| %>
+    <div style="color: red">
+      <%= event.name %>
+    </div>
+  <% end %>
+<% end %>
+
+<div id="events">
+  <% @events_all.each do |event| %>
+    <%= render event %>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New event", new_event_path %>

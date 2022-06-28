@@ -72,3 +72,5 @@ group :test do
 end
 
 gem 'solargraph', group: :development
+
+gem "simple_calendar", "~> 2.4"
