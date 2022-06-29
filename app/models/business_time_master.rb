@@ -3,10 +3,27 @@ class BusinessTimeMaster < ApplicationRecord
   validates :weekday, presence: true
   validates :start_time, :end_time, presence: false
 
+  # 営業時間取得
+  def self.get_biz_time(date)
+    weekday = Time.zone.parse(date.to_s).wday
+    biz_time = BusinessTimeMaster.find_by(weekday_id: weekday)
+  end
+
+  # 営業開始時間
+  def self.start_of_biz(date)
+    biz_time = BusinessTimeMaster.get_biz_time(date)
+    Time.zone.local(date.year, date.month, date.day, biz_time.start_time.hour, biz_time.start_time.min)
+  end
+
+  # 営業終了時間
+  def self.end_of_biz(date)
+    biz_time = BusinessTimeMaster.get_biz_time(date)
+    Time.zone.local(date.year, date.month, date.day, biz_time.end_time.hour, biz_time.end_time.min)
+  end
+
   # 営業時間内チェック
   def self.check_biz_time(target_datetime)
-    weekday = Time.zone.parse(target_datetime.to_s).wday
-    biz_time = BusinessTimeMaster.find_by(weekday_id: weekday)
+    biz_time = self.get_biz_time(target_datetime)
 
     t_datetime = BusinessTimeMaster.cast_time_to_i(target_datetime)
 

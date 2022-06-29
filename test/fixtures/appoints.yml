@@ -1,15 +1,37 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# ok_appoint:
-#   consultation_content: MyString
-#   customer: one
-#   staff: fp_one
-#   start_datetime: 2022-07-01 9:00:00
-#   end_datetime: 2022-07-01 9:30:00
+cus1_fp1_apo_8_1_1:
+  customer: cus1
+  staff: fp1
+  start_datetime: <%= Time.zone.local(2022, 8, 1, 11, 0) %>
+  end_datetime: <%= Time.zone.local(2022, 8, 1, 11, 30) %>
 
-# ng_appoint:
-#   consultation_content: MyString
-#   customer: two
-#   staff: fp_one
-#   start_datetime: 2022-07-01 8:30:00
-#   end_datetime: 2022-07-01 9:00:00
+cus1_fp1_apo_8_1_2:
+  customer: cus1
+  staff: fp1
+  start_datetime: <%= Time.zone.local(2022, 8, 1, 12, 0) %>
+  end_datetime: <%= Time.zone.local(2022, 8, 1, 12, 30) %>
+
+cus2_fp1_apo_8_1_1:
+  customer: cus2
+  staff: fp1
+  start_datetime: <%= Time.zone.local(2022, 8, 1, 11, 30) %>
+  end_datetime: <%= Time.zone.local(2022, 8, 1, 12, 0) %>
+
+cus2_fp1_apo_8_1_2:
+  customer: cus2
+  staff: fp1
+  start_datetime: <%= Time.zone.local(2022, 8, 1, 12, 0) %>
+  end_datetime: <%= Time.zone.local(2022, 8, 1, 12, 30) %>
+
+cus1_fp2_apo_8_2:
+  customer: cus1
+  staff: fp2
+  start_datetime: <%= Time.zone.local(2022, 8, 2, 12, 0) %>
+  end_datetime: <%= Time.zone.local(2022, 8, 2, 12, 30) %>
+
+cus2_fp2_apo_8_1:
+  customer: cus2
+  staff: fp2
+  start_datetime: <%= Time.zone.local(2022, 8, 2, 12, 30) %>
+  end_datetime: <%= Time.zone.local(2022, 8, 2, 13, 0) %>

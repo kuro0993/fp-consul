@@ -17,4 +17,20 @@ class StaffAppointFrame < ApplicationRecord
       errors.add('受付予約枠が営業時間外です')
     end
   end
+
+  # 予約可能枠 日別集計
+  def self.aggregate_daily(start_day, end_day)
+    StaffAppointFrame
+      .where(acceptable_frame_start: start_day..end_day)
+      .group("DATE_FORMAT(acceptable_frame_start, '%Y-%m-%d')")
+      .count
+  end
+
+  # 予約可能枠 時間別集計
+  def self.aggregate_hourly(start_day, end_day)
+    StaffAppointFrame
+      .where(acceptable_frame_start: start_day..end_day)
+      .group("DATE_FORMAT(acceptable_frame_start, '%Y-%m-%d %T')")
+      .count
+  end
 end

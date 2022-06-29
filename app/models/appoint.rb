@@ -70,4 +70,20 @@ class Appoint < ApplicationRecord
       errors.add('営業時間外のため予約できません')
     end
   end
+
+  # 予約 日別集計
+  def self.aggregate_daily(start_day, end_day)
+    Appoint
+      .where(start_datetime: start_day..end_day)
+      .group("DATE_FORMAT(start_datetime, '%Y-%m-%d')")
+      .count
+  end
+
+  # 予約 時間別集計
+  def self.aggregate_hourly(start_day, end_day)
+    Appoint
+      .where(start_datetime: start_day..end_day)
+      .group("DATE_FORMAT(start_datetime, '%Y-%m-%d %T')")
+      .count
+  end
 end

@@ -16,6 +16,22 @@ class StaffAppointFrameTest < ActiveSupport::TestCase
     end
     assert frame2.save
   end
+  test "予約可能枠 日別集計" do
+    s = Time.zone.local(2022,8,1)
+    e = Time.zone.local(2022,8,31)
+    res = StaffAppointFrame.aggregate_daily(s, e)
+    res.map do |k, v|
+      assert_equal 16, v
+    end
+  end
+  test "予約可能枠 時間別集計" do
+    s = BusinessTimeMaster.start_of_biz(Time.zone.local(2022,8,1))
+    e = BusinessTimeMaster.end_of_biz(Time.zone.local(2022,8,1))
+    res = StaffAppointFrame.aggregate_hourly(s, e)
+    res.map do |k, v|
+      assert_equal 2, v
+    end
+  end
 
   # 異常パターン
   test "営業時間外" do

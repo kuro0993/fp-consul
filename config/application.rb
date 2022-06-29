@@ -17,6 +17,7 @@ module App
     # in config/environments, which are processed later.
     #
     config.time_zone = "Asia/Tokyo"
+    config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

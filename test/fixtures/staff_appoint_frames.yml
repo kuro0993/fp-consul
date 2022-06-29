@@ -1,83 +1,64 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # fp1
-fp1_0701_1000:
+<% (10..11).each do |h| %>
+fp1_0701_<%= h %>00:
   staff: fp1
-  acceptable_frame_start: 2022-07-01 10:00:00
-  acceptable_frame_end: 2022-07-01 10:30:00
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 1, h, 0) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 1, h, 30) %>
+fp1_0701_<%= h %>30:
+  staff: fp1
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 1, h, 30) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 1, h+1, 0) %>
+<% end %>
 
-fp1_0701_1030:
+<% (16..17).each do |h| %>
+fp1_0704_<%= h %>00:
   staff: fp1
-  acceptable_frame_start: 2022-07-01 10:30:00
-  acceptable_frame_end: 2022-07-01 11:00:00
-
-fp1_0701_1100:
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 4, h, 0) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 4, h, 30) %>
+fp1_0704_<%= h %>30:
   staff: fp1
-  acceptable_frame_start: 2022-07-01 11:00:00
-  acceptable_frame_end: 2022-07-01 11:30:00
-
-fp1_0701_1130:
-  staff: fp1
-  acceptable_frame_start: 2022-07-01 11:30:00
-  acceptable_frame_end: 2022-07-01 12:00:00
-
-fp1_0702_1600:
-  staff: fp1
-  acceptable_frame_start: 2022-07-02 16:00:00
-  acceptable_frame_end: 2022-07-02 16:30:00
-
-fp1_0702_1630:
-  staff: fp1
-  acceptable_frame_start: 2022-07-02 16:30:00
-  acceptable_frame_end: 2022-07-02 16:00:00
-
-fp1_0702_1700:
-  staff: fp1
-  acceptable_frame_start: 2022-07-02 17:00:00
-  acceptable_frame_end: 2022-07-02 17:30:00
-
-fp1_0702_1730:
-  staff: fp1
-  acceptable_frame_start: 2022-07-02 17:30:00
-  acceptable_frame_end: 2022-07-02 17:00:00
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 4, h, 30) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 4, h+1, 0) %>
+<% end %>
 
 # fp2
-fp2_0701_1000:
+<% (10..11).each do |h| %>
+fp2_0701_<%= h %>00:
   staff: fp2
-  acceptable_frame_start: 2022-07-01 10:00:00
-  acceptable_frame_end: 2022-07-01 10:30:00
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 1, h, 0) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 1, h, 30) %>
+fp2_0701_<%= h %>30:
+  staff: fp2
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 1, h, 30) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 1, h+1, 0) %>
+<% end %>
 
-fp2_0701_1030:
+<% (16..17).each do |h| %>
+fp2_0704_<%= h %>00:
   staff: fp2
-  acceptable_frame_start: 2022-07-01 10:30:00
-  acceptable_frame_end: 2022-07-01 11:00:00
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 4, h, 0) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 4, h, 30) %>
+fp2_0704_<%= h %>30:
+  staff: fp2
+  acceptable_frame_start: <%= Time.zone.local(2022, 7, 4, h, 30) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 7, 4, h+1, 0) %>
+<% end %>
 
-fp2_0701_1100:
-  staff: fp2
-  acceptable_frame_start: 2022-07-01 11:00:00
-  acceptable_frame_end: 2022-07-01 11:30:00
-
-fp2_0701_1130:
-  staff: fp2
-  acceptable_frame_start: 2022-07-01 11:30:00
-  acceptable_frame_end: 2022-07-01 12:00:00
-
-fp2_0702_1600:
-  staff: fp2
-  acceptable_frame_start: 2022-07-02 16:00:00
-  acceptable_frame_end: 2022-07-02 16:30:00
-
-fp2_0702_1630:
-  staff: fp2
-  acceptable_frame_start: 2022-07-02 16:30:00
-  acceptable_frame_end: 2022-07-02 16:00:00
-
-fp2_0702_1700:
-  staff: fp2
-  acceptable_frame_start: 2022-07-02 17:00:00
-  acceptable_frame_end: 2022-07-02 17:30:00
-
-fp2_0702_1730:
-  staff: fp2
-  acceptable_frame_start: 2022-07-02 17:30:00
-  acceptable_frame_end: 2022-07-02 17:00:00
+####
+# 8/1
+<% (1..5).each do |m| %>
+<% ['fp1', 'fp2'].each do |fp| %>
+<% (11..14).each do |h| %>
+<%= fp %>_080<%= m %>_<%= h %>00:
+  staff: <%= fp %>
+  acceptable_frame_start: <%= Time.zone.local(2022, 8, m, h, 0) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 8, m, h, 30) %>
+<%= fp %>_080<%= m %>_<%= h %>30:
+  staff: <%= fp %>
+  acceptable_frame_start: <%= Time.zone.local(2022, 8, m, h, 30) %>
+  acceptable_frame_end : <%= Time.zone.local(2022, 8, m, h+1, 0) %>
+<% end %>
+<% end %>
+<% end %>
