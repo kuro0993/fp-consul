@@ -74,3 +74,5 @@ end
 gem 'solargraph', group: :development
 
 gem 'faker'
+
+gem "simple_calendar", "~> 2.4"

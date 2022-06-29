@@ -1,0 +1,20 @@
+<h1>相談予約確認</h1>
+
+<div class="new_appoint">
+  <%= link_to "New Appoint", new_appoint_path %>
+</div>
+<div class="appoints">
+  <ul>
+    <% @appoint.each do |apo| %>
+      <li>
+        <div>Apo</div>
+        <div><%= apo.start_datetime %>〜<%= apo.end_datetime %></div>
+        <div><%= apo.staff.first_name %> <%= apo.staff.last_name %></div>
+        <button>詳細</button>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
+

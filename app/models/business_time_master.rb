@@ -1,5 +1,5 @@
 class BusinessTimeMaster < ApplicationRecord
-  validates :weekday_id, presence: true, numericality: { in: 1..7 }, uniqueness: true
+  validates :weekday_id, presence: true, numericality: { in: 0..6 }, uniqueness: true
   validates :weekday, presence: true
   validates :start_time, :end_time, presence: false
 
@@ -12,6 +12,7 @@ class BusinessTimeMaster < ApplicationRecord
   # 営業開始時間
   def self.start_of_biz(date)
     biz_time = BusinessTimeMaster.get_biz_time(date)
+    biz_time
     Time.zone.local(date.year, date.month, date.day, biz_time.start_time.hour, biz_time.start_time.min)
   end
 
@@ -24,6 +25,9 @@ class BusinessTimeMaster < ApplicationRecord
   # 営業時間内チェック
   def self.check_biz_time(target_datetime)
     biz_time = self.get_biz_time(target_datetime)
+    if biz_time.start_time.nil?
+      return false
+    end
 
     t_datetime = BusinessTimeMaster.cast_time_to_i(target_datetime)
 

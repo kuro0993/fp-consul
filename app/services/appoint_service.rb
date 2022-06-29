@@ -14,7 +14,7 @@ class AppointService
 
     list = []
     remaining_apo_frames.each do |k, v|
-      list.push({start_time: k, remaining_count: v})
+      list.push(Struct.new(:start_time, :end_time, :remaining_count).new(k.to_time, k.to_time + Constants::APPOINT_FRAME_MINUTES * 60, v))
     end
     list
   end
@@ -33,7 +33,7 @@ class AppointService
 
     list = []
     remaining_apo_frames.each do |k, v|
-      list.push({start_time: k, remaining_count: v})
+      list.push(Struct.new(:start_time, :end_time, :remaining_count).new(k.to_time, k.to_time + Constants::APPOINT_FRAME_MINUTES * 60, v))
     end
     list
   end
