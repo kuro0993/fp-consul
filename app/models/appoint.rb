@@ -11,6 +11,8 @@ class Appoint < ApplicationRecord
   validates :end_datetime, comparison: { greater_than: :start_datetime }
   validate :check_frame_time, :check_staff_appoint_duplicate, :check_customer_appoint_duplicate, :check_biz_time
   
+  # TODO: 予約は翌日以降のみ
+
   # 予約枠時間チェック
   def check_frame_time
     if (end_datetime - start_datetime) / 60 != Constants::APPOINT_FRAME_MINUTES then
