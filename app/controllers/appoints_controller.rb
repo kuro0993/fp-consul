@@ -61,14 +61,13 @@ class AppointsController < ApplicationController
   def destroy
     @appoint.destroy
 
-    redirect_to appoints_url, notice: '相談予約をキャンセルしました'
+    redirect_to mypage_url, notice: '相談予約をキャンセルしました'
   end
 
   private
 
-  # TODO: セッションへ置き換え
   def set_session
-    @session_user = Customer.find(1)
+    @session_user = current_user
   end
 
   def set_appoint

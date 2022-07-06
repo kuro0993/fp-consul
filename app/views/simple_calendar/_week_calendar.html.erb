@@ -1,8 +1,11 @@
 <div class="simple-calendar">
   <div class="calendar-heading flex items-center">
-    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view, class: "flex-1 text-center" %>
-    <span class="calendar-title flex-1 text-center"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
-    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "flex-1 text-center"  %>
+    <%= link_to t('simple_calendar.previous', default: '前の週'), calendar.url_for_previous_view, class: "flex-1 text-center" %>
+    <div class="grid grid-cols-1 w-1/3">
+      <span class="calendar-title text-center"><%= start_date.year %></span>
+      <span class="calendar-title text-center"><%= t('date.month_names')[start_date.month] %></span>
+    </div>
+    <%= link_to t('simple_calendar.next', default: '次の週'), calendar.url_for_next_view, class: "flex-1 text-center"  %>
   </div>
 
   <table class="divide-y divide-gray-300 w-full border-b border-gray-200 shadow">
@@ -18,9 +21,9 @@
     <tbody class="bg-white divide-y divide-gray-300">
       <% date_range.each_slice(7) do |week| %>
         <tr class="whitespace-nowrap">
-          <td class="px-6 py-4 text-sm text-gray-500 text-center"></td>
+          <td class="px-6 py-2 text-sm text-gray-500 text-center"></td>
           <% week.each do |day| %>
-            <%= content_tag :td, class: "px-6 py-4 text-sm text-gray-500 text-center" do %>
+            <%= content_tag :td, class: "px-6 py-2 text-sm text-gray-500 text-center" do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
                 <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
               <% else %>
@@ -32,14 +35,14 @@
         <%# 時間 %>
         <% appoint_frame_time.each do |f| %>
           <%= content_tag :tr %>
-            <%= content_tag :td, f.label, class: "px-6 py-4 text-sm text-gray-500 text-center" %>
+            <%= content_tag :td, f.label, class: "px-6 py-2 text-sm text-gray-500 text-center" %>
             <% week.each do |day| %>
               <% if (check_appoint @acceptable_times, day, f.start_time, f.end_time) %>
-                <%= content_tag :td, class: "px-6 py-4 text-sm text-blue-500 text-center" do %>
+                <%= content_tag :td, class: "px-6 py-2 text-sm text-blue-500 text-center" do %>
                   <%= link_to '○', new_appoint_path(day: day, start_time: f.start_time, end_time: f.end_time), class: 'no-underline hover:underline' %>
                 <% end %>
               <% else %>
-                <%= content_tag :td, "-", class: "px-6 py-4 text-sm text-gray-500 text-center" %>
+                <%= content_tag :td, "-", class: "px-6 py-2 text-sm text-gray-500 text-center" %>
               <% end %>
             <% end %>
         <% end %>

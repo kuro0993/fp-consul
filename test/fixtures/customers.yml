@@ -7,7 +7,7 @@ cus1:
   first_name_kana: taro
   last_name_kana: tanaka
   email: taro-tanaka@example.com
-  password: abcdef
+  password_digest: <%= BCrypt::Password.create('Password1') %>
 
 cus2:
   id: 2
@@ -16,4 +16,4 @@ cus2:
   first_name_kana: jiro
   last_name_kana: suzuki
   email: jiro-suzuki@example.com
-  password: abcdef
+  password_digest: <%= BCrypt::Password.create('Password1') %>

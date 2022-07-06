@@ -1,0 +1,18 @@
+<%= form_with scope: :session, url: login_path, class: "w-2/3 mx-auto" do |form| %>
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.email_field :email, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :password %>
+    <%= form.password_field :password, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit "ログイン", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= link_to '新規登録', new_customer_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+<% end %>

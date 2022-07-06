@@ -14,3 +14,21 @@
  *= require_self
  * require simple_calendar
  */
+
+ /* miscellaneous */
+ 
+ .debug_dump {
+   clear: both;
+   float: left;
+   width: 100%;
+   margin-top: 45px;
+   -moz-box-sizing:    border-box;
+   -webkit-box-sizing: border-box;
+   box-sizing:         border-box;
+   border: 1px solid #d1d1d1;
+   background: #ededed;
+   padding: 1em;
+   color: darkslategray;
+   font-size: 0.8em;
+   border-radius: 6px;
+ }

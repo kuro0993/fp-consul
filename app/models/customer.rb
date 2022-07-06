@@ -1,9 +1,17 @@
 class Customer < ApplicationRecord
   has_many :appoint
 
-  validates :first_name, :last_name, :first_name_kana, :last_name_kana, presence: true
-  validates :email, presence: true
-  validates :password, presence: true, length: { in: 6..20 }
+  before_save { email.downcase! }
+
+  validates :first_name, :last_name, :first_name_kana, :last_name_kana,
+                    presence: true,
+                    length: { maximum: 50 }
+  validates :email, presence: true, 
+                    length: { maximum: 255 },
+                    format: { with: Constants::VALID_EMAIL_REGEX },
+                    uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6}
+  has_secure_password
 
   def full_name
     "#{last_name} #{first_name}"

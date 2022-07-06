@@ -1,0 +1,21 @@
+<div id="<%= dom_id customer %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">名前:</strong>
+    <%= customer.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">カナ:</strong>
+    <%= customer.full_name_kana %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">email:</strong>
+    <%= customer.email %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this appoint", customer, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

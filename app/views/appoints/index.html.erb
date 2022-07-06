@@ -3,19 +3,21 @@
   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
 <% end %>
 
+<div>
+  ご希望の相談日時を選択してください。
+</div>
+
+<div class="grid grid-cols-6">
+  <div class="col-end-7 col-span-1 grid grid-cols-4">
+    <div class="col-span-1 text-center">○</div><div class="col-span-3 before:content-[':']"> 予約可能</div>
+    <div class="col-span-1 text-center">- </div><div class="col-span-3 before:content-[':']"> 予約不可</div>
+  </div>
+</div>
 <%# week %>
 <%= week_calendar events: @acceptable_dates do |date, acceptable_dates| %>
   <%= date.day %>
 <% end %>
 
-<div class="inline">
-  <%= link_to '戻る', appoints_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium border" %>
-</div>
-
-
-<%# 確認用 %>
-<%= @session_user.full_name %>
-
-<div id="appoints" class="min-w-full">
-  <%= render @appoints %>
+<div class="mt-6 container mx-auto">
+  <%= link_to '戻る', mypage_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium border" %>
 </div>

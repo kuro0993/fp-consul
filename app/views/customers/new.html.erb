@@ -1,0 +1,60 @@
+<%= form_with model: @customer, class: "w-2/3 mx-auto" do |form| %>
+  <% if @customer.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= @customer.errors.count %> 件のエラーのため登録に失敗しました</h2>
+
+      <ul>
+        <% @customer.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :first_name_kana %>
+    <%= form.text_field :first_name_kana, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :last_name_kana %>
+    <%= form.text_field :last_name_kana, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.email_field :email, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :password %>
+    <%= form.password_field :password, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit "Create my account", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= link_to '戻る', appoints_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+<% end %>
