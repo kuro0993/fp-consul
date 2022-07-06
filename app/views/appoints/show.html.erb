@@ -7,7 +7,7 @@
     <%= render @appoint %>
 
     <div class="inline-block ml-2">
-      <%= button_to '相談予約キャンセル', appoint_path(@appoint), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to '相談予約キャンセル', appoint_path, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
     <%= link_to '相談予約画面へ戻る', appoints_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>

@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   get    'staffs/login'   => 'sessions#new_staff'
   post   'staffs/login'   => 'sessions#create_staff'
   resources :staffs, only: %i[index show new create]
-  resources :staffs_appoint_frames, only: %i[index show new create destroy]
+  resources :staff_appoint_frames, only: %i[index]
 end

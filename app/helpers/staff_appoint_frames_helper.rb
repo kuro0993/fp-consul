@@ -1,0 +1,2 @@
+module StaffAppointFramesHelper
+end

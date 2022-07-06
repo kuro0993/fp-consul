@@ -1,6 +1,8 @@
 class AppointsController < ApplicationController
   before_action :set_session
   before_action :set_appoint, only: %i[ show destroy ]
+  before_action :check_customer_session, only: %i[ index new create ]
+  before_action :check_session, only: %i[ show destroy ]
 
   # GET /appoints
   def index
@@ -12,7 +14,7 @@ class AppointsController < ApplicationController
   def show
   end
 
-  # GET /appoints/1
+  # GET /appoints/new
   def new
     @appoint = Appoint.new
 
@@ -48,7 +50,7 @@ class AppointsController < ApplicationController
     @appoint.customer = @session_user
 
     if @appoint.save
-      redirect_to appoint_url(@appoint), notice: '相談予約が完了しました'
+      redirect_to appoint_path(@appoint), notice: '相談予約が完了しました'
     else
       @start_datetime = appoint_params[:start_datetime].to_time
       @end_datetime = appoint_params[:end_datetime].to_time
@@ -61,7 +63,11 @@ class AppointsController < ApplicationController
   def destroy
     @appoint.destroy
 
-    redirect_to mypage_url, notice: '相談予約をキャンセルしました'
+    if is_staff?
+      redirect_to staffs_mypage_path, notice: '相談予約をキャンセルしました'
+    else
+      redirect_to mypage_path, notice: '相談予約をキャンセルしました'
+    end
   end
 
   private
@@ -85,5 +91,17 @@ class AppointsController < ApplicationController
     @acceptable_dates = AppointService.get_can_appoint_dates(@start_date.year, @start_date.month)
     @acceptable_times = AppointService.get_can_appoint_times_term(beginning_of_week, end_of_week)
     @appoint_frame =  AppointService.get_frames
+  end
+
+  def check_customer_session
+    if logged_in?
+      redirect_to staffs_mypage_path if is_staff?
+    else
+      redirect_to login_path   
+    end
+  end
+
+  def check_session
+      redirect_to login_path unless logged_in?
   end
 end

@@ -39,7 +39,7 @@
               <%# 社員メニュー %>
               <%= link_to 'マイページ', staffs_mypage_path,
                 class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"%>
-              <%= link_to '予約枠設定', '#',
+              <%= link_to '予約枠設定', staff_appoint_frames_path,
                 class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"%>
               <%= link_to '社員管理', staffs_path,
                 class: "block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"%>
@@ -62,11 +62,13 @@
     <div class="container mx-auto w-2/3 w-full pt-6">
       <%= yield %>
 
-      <div class="w-3/4 mx-auto">
-        <%= debug params if Rails.env.development? %>
-        <%= debug session if Rails.env.development? %>
-        <%= debug current_user if Rails.env.development? %>
-      </div>
+      <% if false %>
+        <div class="w-3/4 mx-auto">
+          <%= debug params if Rails.env.development? %>
+          <%= debug session if Rails.env.development? %>
+          <%= debug current_user if Rails.env.development? %>
+        </div>
+      <% end %>
     </div>
 
   </body>
