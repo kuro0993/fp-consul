@@ -1,0 +1,42 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - '-c'
+      - >-
+        docker build --build-arg MASTER_KEY=$$RAILS_KEY --build-arg DEPLOY_ENV=${_DEPLOY_ENV}
+        -t $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        . 
+    id: build image
+    entrypoint: bash
+    secretEnv:
+      - RAILS_KEY
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - >-
+        $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+    id: push image
+  - name: gcr.io/google-appengine/exec-wrapper
+    args:
+      - '-c'
+      - >-
+        /buildstep/execute.sh -i
+        $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e
+        RAILS_MASTER_KEY=$$RAILS_KEY -- bundle exec rails db:migrate
+    id: apply migrations
+    entrypoint: bash
+    secretEnv:
+      - RAILS_KEY
+images:
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+substitutions:
+  _INSTANCE_NAME: fp-consul
+  _SECRET_NAME: fp-consul-master-key
+  _REGION: asia-northeast2
+  _SERVICE_NAME: fp-consul-rails
+  _DEPLOY_ENV: production
+availableSecrets:
+  secretManager:
+    - versionName: 'projects/${PROJECT_NUMBER}/secrets/${_SECRET_NAME}/versions/latest'
+      env: RAILS_KEY
