@@ -1,5 +1,5 @@
-<h1>ログイン</h1>
-<%= form_with scope: :session, url: login_path, class: "w-2/3 mx-auto" do |form| %>
+<h1>社員専用ログイン</h1>
+<%= form_with scope: :session, url: staffs_login_path, class: "w-2/3 mx-auto" do |form| %>
   <div class="my-5">
     <%= form.label :email %>
     <%= form.email_field :email, 
@@ -14,6 +14,5 @@
 
   <div class="inline">
     <%= form.submit "ログイン", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    <%= link_to '新規登録', new_customer_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 <% end %>

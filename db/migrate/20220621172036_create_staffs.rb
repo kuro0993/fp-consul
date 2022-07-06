@@ -6,7 +6,7 @@ class CreateStaffs < ActiveRecord::Migration[7.0]
       t.string :first_name_kana
       t.string :last_name_kana
       t.string :email
-      t.string :password
+      t.string :password_digest
 
       t.timestamps
     end

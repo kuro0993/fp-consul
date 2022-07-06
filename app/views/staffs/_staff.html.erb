@@ -1,0 +1,18 @@
+<div id="<%= dom_id staff %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">名前:</strong>
+    <%= staff.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">カナ:</strong>
+    <%= staff.full_name_kana %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">email:</strong>
+    <%= staff.email %>
+  </p>
+
+  <%= link_to "社員一覧へ戻る", staffs_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
