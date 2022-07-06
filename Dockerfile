@@ -9,6 +9,9 @@ RUN apk add --no-cache \
   vim \
   mysql-dev \
   tzdata
+  # nodejs \
+  # npm \
+# RUN npm install --global yarn
 
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock

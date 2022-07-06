@@ -12,6 +12,5 @@ Rails.application.routes.draw do
   # namespace :staff do
   #   resources :appoints, only: [:index, :new, :create]
   # end
-  resources :appoints, only: [:index, :new, :create]
-
+  resources :appoints, only: %i[index show new create destroy]
 end

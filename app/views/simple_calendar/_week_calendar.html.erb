@@ -1,0 +1,49 @@
+<div class="simple-calendar">
+  <div class="calendar-heading flex items-center">
+    <%= link_to t('simple_calendar.previous', default: 'Prev'), calendar.url_for_previous_view, class: "flex-1 text-center" %>
+    <span class="calendar-title flex-1 text-center"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "flex-1 text-center"  %>
+  </div>
+
+  <table class="divide-y divide-gray-300 w-full border-b border-gray-200 shadow">
+    <thead class="bg-gray-50">
+      <tr class="whitespace-nowrap">
+        <th class="px-6 py-2 text-xs text-gray-500 text-center"></th>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th class="px-6 py-2 text-xs text-gray-500 text-center"><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody class="bg-white divide-y divide-gray-300">
+      <% date_range.each_slice(7) do |week| %>
+        <tr class="whitespace-nowrap">
+          <td class="px-6 py-4 text-sm text-gray-500 text-center"></td>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: "px-6 py-4 text-sm text-gray-500 text-center" do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+        <%# 時間 %>
+        <% appoint_frame_time.each do |f| %>
+          <%= content_tag :tr %>
+            <%= content_tag :td, f.label, class: "px-6 py-4 text-sm text-gray-500 text-center" %>
+            <% week.each do |day| %>
+              <% if (check_appoint @acceptable_times, day, f.start_time, f.end_time) %>
+                <%= content_tag :td, class: "px-6 py-4 text-sm text-blue-500 text-center" do %>
+                  <%= link_to '○', new_appoint_path(day: day, start_time: f.start_time, end_time: f.end_time), class: 'no-underline hover:underline' %>
+                <% end %>
+              <% else %>
+                <%= content_tag :td, "-", class: "px-6 py-4 text-sm text-gray-500 text-center" %>
+              <% end %>
+            <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

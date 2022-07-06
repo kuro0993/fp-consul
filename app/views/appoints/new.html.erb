@@ -1,41 +1,36 @@
-<h1>New Appoint</h1>
-
+<h1>相談予約画面</h1>
 
 <%= form_with model: @appoint do |form| %>
-  <%# <%= form.collection_select :staff_id, Staff.all, :id, :full_name, prompt: true %>
+  <% if @appoint.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= @appoint.errors.count %> 件のエラーのため予約に失敗しました</h2>
 
-  <%= month_calendar(events: @acceptable_dates) do |date, acceptable_dates| %>
-    <%= date %>
-
-    <% acceptable_dates.each do |acceptable_date| %>
-      <div>
-        <%= acceptable_date.remaining_count > 0 ? "○#{acceptable_date.remaining_count}" : '☓' %>
-      </div>
-    <% end %>
+      <ul>
+        <% @appoint.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <ul>
-    <% @acceptable_times.each do |f| %>
-      <li>
-        <div><%= f.start_time.strftime('%H:%M') %>〜<%= f.end_time.strftime('%H:%M') %></div>
-        <div><%= f.remaining_count > 0 ? "○#{f.remaining_count}" : '☓' %></div>
-      </li>
-    <% end %>
-  </ul>
-
-  <div>
-    <%= form.label :start_datetime %><br>
-    <%= form.text_field :start_datetime %>
+  <div class="my-5">
+    <%= form.label :start_datetime %>
+    <%= form.datetime_field :start_datetime, value: @start_datetime.strftime('%Y-%m-%dT%T'), readonly: true, 
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
   </div>
 
-  <div>
-    <%= form.label :end_datetime %><br>
-    <%= form.text_field :end_datetime %>
+  <div class="my-5">
+    <%= form.label :end_datetime %>
+    <%= form.datetime_field :end_datetime, value: @end_datetime.strftime('%Y-%m-%dT%T'), readonly: true,
+        class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full bg-slate-50 text-slate-500 border-slate-200 shadow-none" %>
+  </div>
+  <div class="my-5">
+    <%= form.label :staff_id %>
+    <%= form.collection_select :staff_id, @staffs, :id, :full_name, class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="inline">
+    <%= form.submit "予約確定", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= link_to '相談予約画面', appoints_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 <% end %>
-
-
