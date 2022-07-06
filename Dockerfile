@@ -20,6 +20,16 @@ RUN bundle install
 
 COPY . /app
 
+ARG DEPLOY_ENV
+ENV RAILS_ENV=${DEPLOY_ENV}
+ENV RAILS_SERVE_STATIC_FILES=true
+# Redirect Rails log to STDOUT for Cloud Run to capture
+ENV RAILS_LOG_TO_STDOUT=true
+# [START cloudrun_rails_dockerfile_key]
+ARG MASTER_KEY
+ENV RAILS_MASTER_KEY=${MASTER_KEY}
+# [END cloudrun_rails_dockerfile_key]
+
 # # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh

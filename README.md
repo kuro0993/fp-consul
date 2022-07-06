@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 開発環境セットアップ
 
-Things you may want to cover:
+イメージビルド
+```sh
+docker-compose build
+```
 
-* Ruby version
+コンテナ起動
+```sh
+docker-compose up -d
+```
 
-* System dependencies
+データベース作成
+```sh
+docker-compose exec web rails db:create
+```
 
-* Configuration
+マイグレーション実行
+```sh
+docker-compose exec web rails db:migrate
+```
 
-* Database creation
+初期データ投入
+```sh
+docker-compose exec web rails rails db:seed
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+開発サーバ起動
+```sh
+docker-compose exec web foreman start -f Procfile.dev
+```
+※`http://localhost:3000/` 
