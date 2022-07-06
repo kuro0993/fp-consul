@@ -11,13 +11,13 @@
 # Master Data
 #############################
 weekdays = [
+  {id: 0, weekday: 'Sun', start: '', end: ''},
   {id: 1, weekday: 'Mon', start: '10:00', end: '18:00'},
   {id: 2, weekday: 'Tue', start: '10:00', end: '18:00'},
   {id: 3, weekday: 'Wed', start: '10:00', end: '18:00'},
   {id: 4, weekday: 'Thu', start: '10:00', end: '18:00'},
   {id: 5, weekday: 'Fri', start: '10:00', end: '18:00'},
   {id: 6, weekday: 'Sat', start: '11:00', end: '15:00'},
-  {id: 7, weekday: 'Sun', start: '', end: ''},
 ]
 
 # BusinessTimeMaster
@@ -63,48 +63,69 @@ end
 
 # StaffAppointFrame
 staffs = Staff.all.limit(3)
-year = 2022
-month = 7
-day = 1
-staffs.each do |st|
-  (10..13).each do |h|
-    StaffAppointFrame.create(
-      staff: st,
-      acceptable_frame_start: Time.zone.local(year, month, day, h, 0),
-      acceptable_frame_end: Time.zone.local(year, month, day, h, 30),
-    )
-    StaffAppointFrame.create(
-      staff: st,
-      acceptable_frame_start: Time.zone.local(year, month, day, h, 30),
-      acceptable_frame_end: Time.zone.local(year, month, day, h + 1, 0),
-    )
-  end
-  (16..17).each do |h|
-    StaffAppointFrame.create(
-      staff: st,
-      acceptable_frame_start: Time.zone.local(year, month, day, h, 0),
-      acceptable_frame_end: Time.zone.local(year, month, day, h, 30),
-    )
-    StaffAppointFrame.create(
-      staff: st,
-      acceptable_frame_start: Time.zone.local(year, month, day, h, 30),
-      acceptable_frame_end: Time.zone.local(year, month, day, h + 1, 0),
-    )
+# year = 2022
+# month = 7
+# day = 1
+from = Time.zone.local(2022, 7, 1)
+to = Time.zone.local(2022, 9).end_of_month
+staff_appoint_frames = []
+(from.to_date..to.to_date).each do |d|
+  year = d.year.to_i
+  month = d.month.to_i
+  day = d.day
+  staffs.each do |st|
+    (10..11).each do |h|
+      frame1 = StaffAppointFrame.new(
+        staff: st,
+        acceptable_frame_start: Time.zone.local(year, month, day, h, 0),
+        acceptable_frame_end: Time.zone.local(year, month, day, h, 30),
+      )
+      if frame1.valid?
+        staff_appoint_frames << frame1.attributes.except("id", "created_at", "updated_at")
+      end
+      frame2 = StaffAppointFrame.new(
+        staff: st,
+        acceptable_frame_start: Time.zone.local(year, month, day, h, 30),
+        acceptable_frame_end: Time.zone.local(year, month, day, h + 1, 0),
+      )
+      if frame2.valid?
+        staff_appoint_frames << frame2.attributes.except("id", "created_at", "updated_at")
+      end    
+    end
+    (13..17).each do |h|
+      frame1 = StaffAppointFrame.new(
+        staff: st,
+        acceptable_frame_start: Time.zone.local(year, month, day, h, 0),
+        acceptable_frame_end: Time.zone.local(year, month, day, h, 30),
+      )
+      if frame1.valid?
+        staff_appoint_frames << frame1.attributes.except("id", "created_at", "updated_at")
+      end 
+      frame2 = StaffAppointFrame.new(
+        staff: st,
+        acceptable_frame_start: Time.zone.local(year, month, day, h, 30),
+        acceptable_frame_end: Time.zone.local(year, month, day, h + 1, 0),
+      )
+      if frame2.valid?
+        staff_appoint_frames << frame2.attributes.except("id", "created_at", "updated_at")
+      end    
+    end
   end
 end
+StaffAppointFrame.insert_all staff_appoint_frames
 
 # Appoint Sample
-Appoint.create(
-  staff: Staff.find(1),
-  customer: Customer.find(1),
-  start_datetime: Time.zone.local(year, month, day, 10, 0),
-  end_datetime: Time.zone.local(year, month, day, 10, 30),
-  consultation_content: 'test',
-)
-Appoint.create(
-  staff: Staff.find(2),
-  customer: Customer.find(2),
-  start_datetime: Time.zone.local(year, month, day, 11, 0),
-  end_datetime: Time.zone.local(year, month, day, 11, 30),
-  consultation_content: 'test',
-)
+# Appoint.create(
+#   staff: Staff.find(1),
+#   customer: Customer.find(1),
+#   start_datetime: Time.zone.local(year, month, day, 10, 0),
+#   end_datetime: Time.zone.local(year, month, day, 10, 30),
+#   consultation_content: 'test',
+# )
+# Appoint.create(
+#   staff: Staff.find(2),
+#   customer: Customer.find(2),
+#   start_datetime: Time.zone.local(year, month, day, 11, 0),
+#   end_datetime: Time.zone.local(year, month, day, 11, 30),
+#   consultation_content: 'test',
+# )

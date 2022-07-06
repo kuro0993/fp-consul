@@ -43,7 +43,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -74,3 +74,12 @@ end
 gem 'solargraph', group: :development
 
 gem 'faker'
+
+gem "simple_calendar", "~> 2.4"
+
+# gem 'cssbundling-rails'
+# gem "jsbundling-rails"
+
+gem "tailwindcss-rails", "~> 2.0"
+
+gem "foreman"

@@ -1,0 +1,26 @@
+<div id="<%= dom_id appoint %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Customer:</strong>
+    <%= appoint.customer.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Staff:</strong>
+    <%= appoint.staff.full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">start_datetime:</strong>
+    <%= appoint.start_datetime %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">end_datetime:</strong>
+    <%= appoint.end_datetime %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this appoint", appoint, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

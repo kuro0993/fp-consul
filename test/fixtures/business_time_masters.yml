@@ -1,5 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+sun:
+  weekday_id: 0
+  weekday: Sun
+  start_time: ''
+  end_time: ''
+
 mon:
   weekday_id: 1
   weekday: Mon
@@ -35,9 +41,3 @@ sat:
   weekday: Sat
   start_time: <%= Time.zone.parse('11:00') %>
   end_time: <%= Time.zone.parse('15:00') %>
-
-sun:
-  weekday_id: 7
-  weekday: Sun
-  start_time: ''
-  end_time: ''

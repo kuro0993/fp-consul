@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-cus_one:
+cus1:
   id: 1
   first_name: Taro
   last_name: Tanaka
@@ -9,7 +9,7 @@ cus_one:
   email: taro-tanaka@example.com
   password: abcdef
 
-cus_two:
+cus2:
   id: 2
   first_name: Jiro
   last_name: Suzuki

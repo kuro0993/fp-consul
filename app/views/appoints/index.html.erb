@@ -1,0 +1,21 @@
+<h1>相談予約画面</h1>
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+
+<%# week %>
+<%= week_calendar events: @acceptable_dates do |date, acceptable_dates| %>
+  <%= date.day %>
+<% end %>
+
+<div class="inline">
+  <%= link_to '戻る', appoints_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium border" %>
+</div>
+
+
+<%# 確認用 %>
+<%= @session_user.full_name %>
+
+<div id="appoints" class="min-w-full">
+  <%= render @appoints %>
+</div>
