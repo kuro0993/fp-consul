@@ -3,8 +3,10 @@ steps:
     args:
       - '-c'
       - >-
-        docker build --build-arg MASTER_KEY=$$RAILS_KEY --build-arg DEPLOY_ENV=${_DEPLOY_ENV}
-        -t $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        docker build
+        --build-arg MASTER_KEY=$$RAILS_KEY
+        --build-arg DEPLOY_ENV=${_DEPLOY_ENV}
+        -t ${_GCR_HOSTNAME}/${PROJECT_ID}/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}
         . 
     id: build image
     entrypoint: bash
@@ -14,16 +16,17 @@ steps:
     args:
       - push
       - >-
-        $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+        ${_GCR_HOSTNAME}/${PROJECT_ID}/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}
     id: push image
   - name: gcr.io/google-appengine/exec-wrapper
     args:
       - '-c'
       - >-
-        /buildstep/execute.sh -i
-        $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
-        -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME} -e
-        RAILS_MASTER_KEY=$$RAILS_KEY -- bundle exec rails db:migrate
+        /buildstep/execute.sh
+        -i ${_GCR_HOSTNAME}/${PROJECT_ID}/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}
+        -s ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME}
+        -e RAILS_MASTER_KEY=$$RAILS_KEY
+        -- bundle exec rails db:migrate
     id: apply migrations
     entrypoint: bash
     secretEnv:
@@ -35,7 +38,7 @@ steps:
       - deploy
       - fp-consul-rails
       - --image
-      - $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - ${_GCR_HOSTNAME}/${PROJECT_ID}/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}
       - --region
       - ${_REGION}
       - --add-cloudsql-instances
@@ -43,7 +46,7 @@ steps:
       - --allow-unauthenticated
     id: deploy
 images:
-  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+  - '${_GCR_HOSTNAME}/${PROJECT_ID}/${REPO_NAME}/${_SERVICE_NAME}:${COMMIT_SHA}'
 substitutions:
   _INSTANCE_NAME: fp-consul
   _SECRET_NAME: fp-consul-master-key
