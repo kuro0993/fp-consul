@@ -30,13 +30,17 @@ steps:
       - RAILS_KEY
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: 
-      - >- 
-        run deploy fp-consul-rails
-        --image $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
-        --region ${_REGION}
-        --add-cloudsql-instances ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME}
-        --allow-unauthenticated
+    args:
+      - run 
+      - deploy
+      - fp-consul-rails
+      - --image
+      - $_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - --region
+      - ${_REGION}
+      - --add-cloudsql-instances
+      - ${PROJECT_ID}:${_REGION}:${_INSTANCE_NAME}
+      - --allow-unauthenticated
     id: deploy
 images:
   - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
