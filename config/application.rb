@@ -20,9 +20,5 @@ module App
     config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.default_locale = :ja
-  
-    # allow hosts
-    # config.hosts << ENV["ALLOW_HOST"]
-    config.hosts = nil
   end
 end
