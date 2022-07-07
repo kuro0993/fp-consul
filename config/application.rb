@@ -22,7 +22,7 @@ module App
     config.i18n.default_locale = :ja
   
     # allow hosts
-    config.hosts << ENV["ALLOW_HOST"]
-    config.hosts << "localhost"
+    # config.hosts << ENV["ALLOW_HOST"]
+    config.hosts = nil
   end
 end
