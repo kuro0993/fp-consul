@@ -59,5 +59,7 @@ production:
   database: <%= ENV["PRODUCTION_DB_NAME"] %>
   username: <%= ENV["PRODUCTION_DB_USERNAME"] %>
   password: <%= Rails.application.credentials.gcp[:db_password] %>
-  host: "<%= ENV.fetch("DB_SOCKET_DIR") { '/cloudsql' } %>/<%= ENV["CLOUD_SQL_CONNECTION_NAME"] %>"
+  # host: "<%= ENV.fetch("DB_SOCKET_DIR") { '/cloudsql' } %>/<%= ENV["CLOUD_SQL_CONNECTION_NAME"] %>"
   # host: "<%= ENV["CLOUD_SQL_CONNECTION_NAME"] %>"
+  # host: "<%= ENV["CLOUD_SQL_HOST_NAME"] %>"
+  socket: "<%= ENV.fetch("DB_SOCKET_DIR") { '/cloudsql' } %>/<%= ENV["CLOUD_SQL_CONNECTION_NAME"] %>"
