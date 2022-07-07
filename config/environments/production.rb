@@ -91,6 +91,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # allow requests
-  config.hosts << "fp-consul-rails-jurf47trpa-dt.a.run.app"
+  # allow hosts
+  config.hosts << ENV["ALLOW_HOST"]
 end
