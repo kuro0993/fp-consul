@@ -83,3 +83,5 @@ gem "simple_calendar", "~> 2.4"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "foreman"
+
+gem "dotenv-rails"
