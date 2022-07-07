@@ -10,6 +10,7 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+      - ./cloudsql:/cloudsql
   web:
     build:
       context: .
@@ -19,6 +20,7 @@ services:
     command: /bin/sh
     volumes:
       - .:/app
+      - ./cloudsql:/cloudsql
     ports:
       - "3000:3000"
     depends_on:
